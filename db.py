@@ -98,27 +98,25 @@ def validate_email_format(email):
 
 def validate_admin_email(email):
     """
-    Ensures admin registration uses an authorized institutional email.
-    Allowed if the address is on ALLOWED_ADMIN_EMAILS or its domain is on ALLOWED_ADMIN_DOMAINS.
+    Allow any institutional email ending with .edu, .edu.in or .ac.in
     """
     is_valid, error_message = validate_email_format(email)
     if not is_valid:
         return False, error_message
 
     normalized_email = email.strip().lower()
-    if normalized_email in ALLOWED_ADMIN_EMAILS:
-        return True, None
-
     domain = normalized_email.split("@")[-1]
-    if domain in ALLOWED_ADMIN_DOMAINS:
+
+    if (
+        domain.endswith("edu")
+        or domain.endswith("edu.in")
+        or domain.endswith("ac.in")
+    ):
         return True, None
 
-    domain_hint = ", ".join(f"@{domain}" for domain in ALLOWED_ADMIN_DOMAINS)
     return False, (
-        "Admin registration is restricted to authorized institutional emails. "
-        f"Use an address ending with {domain_hint}, or contact the system administrator."
+        "Please use a valid institutional email ending with .edu, .edu.in or .ac.in"
     )
-
 
 def register_user(username, password, role, branch='All', year='All', email=None):
     """Registers a new user in the system with a hashed password."""
