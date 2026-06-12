@@ -3,7 +3,7 @@ import os
 # Flask REST API base URL used by the Streamlit dashboard.
 BACKEND_URL = os.environ.get(
     "BACKEND_URL",
-    "https://ai-noticeboard-pn3r.onrender.com",
+    "https://suchna-ai-1.onrender.com",
 ).rstrip("/")
 
 # Authorized admin email addresses (exact match, case-insensitive).
