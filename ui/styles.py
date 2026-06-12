@@ -1,7 +1,6 @@
 """Global CSS injection for SUCHNA AI — premium dark theme only."""
 
 from pydoc import text
-from turtle import width
 
 from ui.theme import get_theme_tokens
 
